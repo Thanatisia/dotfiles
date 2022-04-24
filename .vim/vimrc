@@ -1,0 +1,140 @@
+"=======
+" VimRC 
+"=======
+
+"## Table of Contents
+"- Variables
+"- Plugins
+"- Settings
+"- Remaps
+"- Autocommands
+
+"------------------------------------------------------------------------
+
+"## Variables
+let mapleader=","
+
+"------------------------------------------------------------------------
+
+"## Plugins
+
+"------------------------------------------------------------------------
+
+"## Settings
+" ===========================
+" VimRC - Set Global Settings
+" ===========================
+
+"General Settings
+    set nocompatible
+    filetype on
+    filetype plugin on
+    filetype indent on
+	syntax enable
+"Set Font
+    "set guifont=Terminal
+    set guifont="Roboto Mono"
+    "set guifont="Iosevka"
+    set encoding=UTF-8
+"Set Tab Spaces to 4 spaces
+	set expandtab
+	set tabstop=4
+	set shiftwidth=4
+"Set Options
+    set titlestring=%t 
+    set confirm
+    "set autoindent
+	set smartindent
+	set linebreak
+	set number
+	set relativenumber
+	set title
+	set ruler
+	set background=dark
+	set hlsearch
+	set textwidth=0
+	set backspace=indent,eol,start
+	set clipboard=unnamed
+    set path+=**                        " ** indicates to search all files and directories and in all subdirectories of that directory
+    set cursorline                      " Highlight current line
+    set mouse=a
+"Set for auto/tab completion
+    set wildmode=list:longest,full
+    set wildmenu
+    set completeopt+=menu,longest
+"Set Toggles
+    set pastetoggle=<F3>
+"Disable Options
+	set noautoindent
+	set nowrap
+	set noerrorbells
+    set noeb vb t_vb=
+	set nobackup
+	set noswapfile
+    set noundofile
+
+"Set colorscheme
+   "set termguicolors
+   set t_Co=256
+
+"------------------------------------------------------------------------
+
+"## Remaps
+
+"------------------------------------------------------------------------
+
+"## Autocommands
+
+"======================================================================
+" Autocommands
+" Syntax:
+"	autocmd {event-type} {pattern} {event}
+" Options
+"	event types:
+"		BufWritePre		: Before writing to a file
+"		BufWritePro		: After writing to a file
+"		BufRead			: When reading an existing file
+"		BufNewFile		: When opening a new file
+"		BufNewFile,BufRead	: Run Command regardless of where file exists
+"		References:
+"			https://vimhelp.org/autocmd.txt.html
+" Notes:
+"	- Please seperate all multivalues with delimiter ','
+"======================================================================
+
+" Automatically Center the screen
+    " When opening a file
+        autocmd BufEnter * :normal zz
+
+    " When entering insert mode
+        " autocmd InsertEnter * :normal zz
+
+" Reindent the current file
+    " Before entering the file
+        " autocmd BufWritePre * :normal gg=G
+
+" Automatically Leave Insert Mode after 'updatetime' milliseconds of inactivity
+    autocmd CursorHoldI * stopinsert
+
+"------------------------------------------------------------------------
+
+"==========
+" Snippets
+"==========
+" Python Snippets Group
+    augroup PythonSnippets autocmd FileType python
+        iabbrev ifmain <CR>
+                \if __name__ == "__main__":<CR>
+                \main()
+    augroup END
+
+" Shellscript Snippets Group
+    augroup ShellscriptSnippets autocmd FileType sh
+        iabbrev ifmain <CR>
+                \if "${BASH_SOURCE[0]}" == "$0"; then
+                \main()
+                \fi
+    augroup END
+
+
+"------------------------------------------------------------------------
