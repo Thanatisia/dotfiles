@@ -1,15 +1,33 @@
 # My Dotfiles
 
-Contains all config and dotfiles of profiles for ricing and backup.
-
+Contains various config files (aka 'dotfiles') for ricing and general use.
 
 ## Table of Contents
-Links
+- [Setup](#setup)
+- [Resources](#resources)
+- [Remarks](#remarks)
 
-## Links
-* All Configs : [.config](config/README.md)
+## Setup
 
-* [Neovim](nvim/README.md)
+### Pre-Requisites
 
-* [Vim](vim/README.md)
+### Dependencies
 
+- git
+- feh
+
+### Obtaining
+
+git clone https://github.com/Thanatisia/dotfiles
+
+### Installing/Compilation/Build
+
+I am currently working on a Makefile/shellscript for easy installation
+
+### Customization and Configuration
+
+## Documentation
+
+## Resources
+
+## Remarks

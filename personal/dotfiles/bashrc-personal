@@ -1,0 +1,31 @@
+#===================#
+# BashRC [Personal] #
+#===================#
+
+: "
+Table of Contents:
+	- alias 
+"
+
+#=======#
+# Alias #
+#=======#
+
+if [[ -f ~/personal/scripts/aliases ]]; then
+    . ~/personal/scripts/aliases
+fi
+
+#===========#
+# Variables #
+#===========#
+
+if [[ -f ~/personal/scripts/env ]]; then
+    . ~/personal/scripts/env
+fi
+
+#===========#
+# Autostart #
+#===========#
+neofetch
+
+

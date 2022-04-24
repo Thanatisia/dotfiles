@@ -1,0 +1,500 @@
+   35  sudo pacman -S xorg
+   36  sudo pacman -S xserver
+   37  sudo pacman -S xinit
+   38  sudo pacman -S x11
+   39  cat /etc/X11/xinit/xinitrc
+   40  cat /etc/X11/xinit/xinitrc
+   41  cat /etc/X11/xinit
+   42  ddir /etc/X11/xinit
+   43  dir /etc/X11/xinit
+   44  dir /etc/X11/xinit
+   45  dir /etc/X11/xinit/xinitrc.d/
+   46  dir
+   47  dir --all
+   48  dir --all
+   49  cat /etc
+   50  dir /etc
+   51  dir /etc
+   52  dir /etc/X11
+   53  dir /etc/X11/xorg.conf.d/
+   54  dir
+   55  dir /etc/X11/xorg.conf.d/ --all
+   56  dir /etc/X11/xinit/ --all
+   57  dir /etc/X11/xinitrc/ --all
+   58  dir /usr/share/doc/bspwm
+   59  dir /usr/share/doc/bspwm/examples
+   60  dir /usr/share/doc/bspwm/examples
+   61  cp /usr/share/doc/bspwm/examples/bspwmrc ~/.config/bspwm/bspwmrc
+   62  cp /usr/share/doc/bspwm/examples/sxhkdrc ~/.config/bspwm/sxhkdrc
+   63  dir /usr/share/doc/bspwm/examples
+   64  dir /usr/share/doc/bspwm/
+   65  dir /usr/share/doc/
+   66  dir /usr/share/doc/sxhkd/examples/
+   67  dir /usr/share/doc/sxhkd/examples/background_shell/
+   68  cat /usr/share/doc/sxhkd/examples/background_shell/xinitrc 
+   69  chmod 600 ~/.config/bspwm/bspwmrc 
+   70  chmod 600 ~/.config/sxhkd/sxhkdrc
+   71  dir ~/.config/sxhkd/
+   72  dir ~/.config/sxhkd/
+   73  dir ~/.config/sxhkd/ --all
+   74  mv ~/.config/bspwm/sxhkdrc ~/.config/sxhkd
+   75  chmod 600 ~/.config/sxhkd/sxhkdrc
+   76  install --help
+   77  install
+   78  install -Dm755
+   79  vim ~/.config/sxhkd/sxhkdrc
+   80  vim ~/.config/bspwm/bspwmrc
+   81  vim .xinitrc
+   82  echo "sxhkd &
+   83  exec bspwm" >> ~/.xinitrc
+   84  vim  ~/.xinitrc
+   85  startx ~/.xinitrc
+   86  sudo pacman -S x
+   87  sudo pacman -S xorg
+   88  sudo pacman -S xinit
+   89  sudo pacman -S xorg-xinit
+   90  startx ~/.xinitrc
+   91  vim ~/.xinitrc
+   92  dir
+   93  dir --all
+   94  exit
+   95  lsblk
+   96  vim .bash_profile
+   97  vim ~/.xinitrc
+   98  exit
+   99  vim .bash_profile
+  100  vim .bash_profile
+  101  exit
+  102  exit
+  103  vim .bash_profile
+  104  exit
+  105  vim ~/.config/sxhkd/sxhkdrc
+  106  sudo pacman -S urxvt
+  107  vim ~/.config/sxhkd/sxhkdrc
+  108  exit
+  109  exit
+  110  vim ~/.bash_profile
+  111  vim ~/.bash_profile
+  112  vim ~/.bash_profile
+  113  cat ~/.bash_profile
+  114  exit
+  115  exit
+  116  vim ~/.bash_profile
+  117  exit
+  118  dir
+  119  conky
+  120  picom
+  121  picom --help
+  122  picom
+  123  dir /usr/share/doc
+  124  dir /usr/share/doc/picom
+  125  dir /usr/share/doc/picom/picom.conf.example 
+  126  cat /usr/share/doc/picom/picom.conf.example 
+  127  cp /usr/share/doc/picom/picom.conf ~/.config/picom
+  128  mkdir -p ~/.config/picom
+  129  cp /usr/share/doc/picom/picom.conf ~/.config/picom
+  130  cp /usr/share/doc/picom/picom.conf.example ~/.config/picom/picom.conf
+  131  picom
+  132  vim ~/.config/picom/picom.conf 
+  133  picom
+  134  lsblk
+  135  xrandr
+  136  sudo pacman -S git
+  137  ip ma s
+  138  ip a s
+  139  sudo systemctl start NetworkManager
+  140  vim ~/.bash_profile\
+  141  vim ~/.bash_profile
+  142  sudo systemctl status NetworkManager
+  143  sudo systemctl status NetworkManager | grep "Active: "
+  144  sudo systemctl status NetworkManager | grep "active "
+  145  sudo systemctl status NetworkManager | grep "active"
+  146  sudo systemctl status NetworkManager | grep "active"
+  147  vim ~/.bash_profile
+  148  sudo systemctl status NetworkManager | grep "active"
+  149  sudo systemctl stop NetworkManager | grep "active"
+  150  sudo systemctl status NetworkManager | grep "active"
+  151  sudo systemctl status NetworkManager | grep "*active"
+  152  sudo systemctl status NetworkManager | grep "*inactive"
+  153  sudo systemctl status NetworkManager | grep "active"
+  154  pgrep networkmanager
+  155  pgrep NetworkManager
+  156  ps Network
+  157  ps NetworkManager
+  158  ps networkmanager
+  159  systemctl is-active --quiet 
+  160  systemctl is-active --quiet networkmanager
+  161  systemctl is-active --quiet NetworkManageer
+  162  systemctl is-active --quiet NetworkManager
+  163  sudo systemctl start NetworkManager
+  164  systemctl is-active --quiet NetworkManager
+  165  systemctl is-active --quiet networkmanager
+  166  systemctl is-active NetworkManager
+  167  vim ~/.bash_profile
+  168  vim ~/.bash_profile
+  169  systemctl is-active --quiet networkmanager
+  170  systemctl is-active NetworkManager
+  171  systemctl is-active networkmanager
+  172  systemctl is-active NetworkManager
+  173  vim ~/.bash_profile
+  174  vim ~/.bash_profile
+  175  systemctl stop networkmanager
+  176  sudo systemctl stop networkmanager
+  177  sudo systemctl stop NetworkManager
+  178  sudo systemctl status NetworkManager
+  179  exit
+  180  vim ~/.bash_profile
+  181  exit
+  182  vim ~/.bash_profile
+  183  exit
+  184  vim ~/.bash_profile
+  185  exit
+  186  vim ~/.bash_profile
+  187  vim ~/.bash_profile
+  188  systemctl status NetworkManager
+  189  exit
+  190  vim ~/.bash_profile
+  191  exit
+  192  ip a s
+  193  systemctl status NetworkManager
+  194  vim ~/.bash_profile
+  195  vim ~/.bash_profile
+  196  exit
+  197  vim ~/.bash_profile
+  198  exit
+  199  vim ~/.bash_profile
+  200  exit
+  201  vim ~/.bash_profile
+  202  systemctl is-active --quiet NetworkManagr
+  203  echo "$(systemctl is-active --quiet NetworkManager)"
+  204  vim ~/.bash_profile
+  205  echo $?
+  206  exit
+  207  vim ~/.bash_profile
+  208  systemctl stop NetworkManager
+  209  sudo systemctl stop NetworkManager
+  210  exit
+  211  exit
+  212  exit
+  213  :q!
+  214  exit
+  215  exit
+  216  exit
+  217  exit
+  218  bspc node -f north
+  219  bspc node -f west
+  220  bspc node -f east
+  221  bspc node -f south
+  222  bspc node -h
+  223  bspc node ---help
+  224  bspc node
+  225  man bspc node
+  226  bspc node -s left
+  227  bspc node -s west
+  228  bspc node -s east
+  229  wm -r
+  230  bspc wm -r
+  231  ip a s
+  232  systemctl status
+  233  picom
+  234  conky
+  235  vim ~/.config/bspwm/bspwmrc
+  236  vim ~/.config/sxhkd/sxhkdrc
+  237  vim ~/.config/sxhkd/sxhkdrc
+  238  vim .bashrc
+  239  dir --all
+  240  vim .bashrc
+  241  vim .bashrc
+  242  vim .bashrc
+  243  vim .bashrc
+  244  vim .bashrc
+  245  vim .bashrc
+  246  vim .bashrc
+  247  vim .bashrc
+  248  exit
+  249  vim .bashrc
+  250  mkdir -p
+  251  vim .bashrc
+  252  exit
+  253  dir
+  254  dir
+  255  dir --all
+  256  dir personal
+  257  dir personal/dotfiles/
+  258  ls personal/dotfiles/
+  259  vim .bashrc
+  260  vim .bashrc
+  261  vim .bashrc
+  262  vim .bashrc
+  263  vim .bashrc
+  264  vim .bashrc
+  265  vim .bashrc
+  266  vim .bashrc
+  267  vim .bashrc
+  268  vim .bashrc
+  269  vim .bashrc
+  270  vim .bashrc
+  271  rm -r personal/dotfiles/bashrc-personal 
+  272  rm -rf personal/dotfiles/bashrc-personal 
+  273  dir
+  274  dir personal
+  275  dir personal/dotfiles
+  276  rm -r personal
+  277  dir
+  278  exit
+  279  vim ~/.bashrc
+  280  vim ~/.bash_profile
+  281  reload
+  282  reload
+  283  exit
+  284  vim ~/.bash_profile
+  285  vim ~/.bash_profile
+  286  vim ~/.bash_profile
+  287  exit
+  288  dir
+  289  vim personal/dotfiles/bashrc-personal 
+  290  vim ~/personal/dotfiles/bashrc-personal 
+  291  vim ~/.bash_profile
+  292  vim ~/personal/dotfiles/bashrc-personal 
+  293  vim ~/personal/dotfiles/bashrc-personal 
+  294  reload
+  295  source ~/.bashrc
+  296  vim ~/personal/dotfiles/bashrc-personal 
+  297  source ~/.bashrc
+  298  reload
+  299  startx
+  300  startx 
+  301  startx bspwm
+  302  startx
+  303  startx
+  304  vim ~/.bash_profile
+  305  startx
+  306  startx
+  307  vim ~/.bash_profile
+  308  startx bspwm
+  309  vim ~/.bash_profile
+  310  startx
+  311  vim ~/.bash_profile
+  312  startx
+  313  vim ~/.bash_profile
+  314  startx
+  315  vim ~/.bash_profile
+  316  vim ~/.bash_profile
+  317  vim ~/.bash_profile
+  318  startx
+  319  startx bspwm
+  320  vim ~/.xinitrc
+  321  startx
+  322  exit
+  323  vim ~/.xinitrc
+  324  vim ~/.bash_profile
+  325  vim ~/.bash_profile
+  326  exit
+  327  vim ~/.bash_profile
+  328  exit
+  329  vim ~/.bash_profile
+  330  exit
+  331  vim ~/.bash_profile
+  332  vim ~/.bash_profile
+  333  vim ~/.bash_profile
+  334  exit
+  335  vim ~/.bash_profile
+  336  exit
+  337  vim ~/.bash_profile
+  338  vim ~/.bash_profile
+  339  exit
+  340  vim ~/.bash_profile
+  341  exit
+  342  vim ~/.bash_profile
+  343  vim ~/.bash_profile
+  344  exit
+  345  vim ~/.bash_profile
+  346  exit
+  347  vim ~/.bash_profile
+  348  exit
+  349  vim ~/.bash_profile
+  350  exit
+  351  exit
+  352  startx --help
+  353  xrandr 
+  354* xrandr --mode 
+  355  xrandr 
+  356  xrandr 
+  357  xrandr --mode Virtual-1
+  358  xrandr --output Virtual-1 --mode 1920x1080
+  359  xrandr --output Virtual-1 --mode 800x600
+  360  vim ~/personal/scripts
+  361  mkdir personal/scripts
+  362  mkdir -p personal/scripts
+  363  dir personal/
+  364  dir personal/scripts 
+  365  rm personal/scripts 
+  366  mkdir -p personal/scripts
+  367  dir personal/
+  368  dir personal/dotfiles/bashrc-personal 
+  369  vim ~/personal/scripts/shellib.sh
+  370  vim ~/personal/scripts/shellib.sh
+  371  vim ~/personal/scripts/shellib.sh
+  372  echo $DISPLAY
+  373  xrandr
+  374  xrandr
+  375  xrandr | grep primary
+  376  vim ~/personal/scripts/shellib.sh
+  377  xrandr | grep primary | cut -d ' ' -f1
+  378  vim ~/personal/scripts/shellib.sh
+  379  vim ~/personal/scripts/shellib.sh
+  380  xrandr | grep primary | cut -d ' ' -f1
+  381  xrandr | grep Virtual-1
+  382  xrandr
+  383  xrandr | awk -v monitor="^$MONITOR connected" '/connected/ {p = 0} $0 ~ monitor {p = 1} p'
+  384  echo $MONITOR
+  385  xrandr | awk -v monitor="^Virtual-0 connected" '/connected/ {p = 0} $0 ~ monitor {p = 1} p'
+  386  xrandr
+  387  xrandr -d :0
+  388  xrandr -d :0
+  389  vim ~/personal/scripts/shellib.sh
+  390  vim ~/personal/scripts/shellib.sh
+  391  reload
+  392  vim ~/.bashrc
+  393  vim ~/.bashrc
+  394  reload
+  395  switch_resolution 
+  396  vim ~/personal/scripts/shellib.sh
+  397  vim ~/personal/scripts/shellib.sh
+  398  xrandr | grep 'primary'
+  399  xrandr | grep 'primary' | cut -d ' ' -f1
+  400  xrandr | grep 'primary' | cut -d ' ' -f2
+  401  xrandr | grep 'primary' | cut -d ' ' -f3
+  402  xrandr | grep 'primary' | cut -d ' ' -f4
+  403  xrandr | grep 'primary' | cut -d ' ' -f4 | cut -d '+'
+  404  xrandr | grep 'primary' | cut -d ' ' -f4 | cut -d '+' -f1
+  405  vim ~/personal/scripts/shellib.sh
+  406  xrandr | grep 'primary' | cut -d ' ' -f4 | cut -d '+' -f1
+  407  vim ~/personal/scripts/shellib.sh
+  408  reload
+  409  switch_resolution 
+  410  vim ~/personal/scripts/shellib.sh
+  411  switch_resolution 
+  412  vim ~/personal/scripts/shellib.sh
+  413  reload
+  414  switch_resolution 
+  415  switch_resolution  800x600
+  416  switch_resolution 1920x1080
+  417  switch_resolution 800x600
+  418  vim ~/personal/scripts/shellib.sh
+  419  vim ~/personal/scripts/shellib.sh
+  420  vim ~/personal/scripts/shellib.sh
+  421  vim ~/personal/scripts/shellib.sh
+  422  vim ~/personal/scripts/shellib.sh
+  423  dir
+  424  dir --all
+  425  vim ~/personal/scripts/shellib.sh
+  426  vim ~/personal/scripts/shellib.sh
+  427  vim ~/personal/scripts/shellib.sh
+  428  vim ~/personal/scripts/shellib.sh
+  429  vim ~/personal/scripts/shellib.sh
+  430  rm ~/.cache/vim/swap/%home%profiles%asura%personal%scripts%shellib.sh.swp 
+  431  vim ~/personal/scripts/shellib.sh
+  432  vim ~/personal/scripts/shellib.sh
+  433  reload
+  434  next_resolution 
+  435  reload
+  436  vim ~/personal/scripts/shellib.sh
+  437  reload
+  438  next_resolution 
+  439  next_resolution 
+  440  next_resolution 
+  441  next_resolution 
+  442  switch_resolution 800x600
+  443  vim ~/personal/scripts/shellib.sh
+  444  switch_resolution 1920x1080
+  445  next_resolution 
+  446  next_resolution 
+  447  switch_resolution 1920x1080
+  448  switch_resolution 800x600
+  449  vim ~/personal/scripts/shellib.sh
+  450  reload
+  451  next_resolution 
+  452  next_resolution 
+  453  next_resolution 
+  454  reload
+  455  xrandr
+  456  xrandr
+  457  next_resolution 
+  458  vim ~/personal/scripts/shellib.sh
+  459  vim ~/personal/scripts/shellib.sh
+  460  reload
+  461  next_resolution 
+  462  reload
+  463  vim ~/personal/scripts/shellib.sh
+  464  reload
+  465  next_resolution 
+  466  vim ~/personal/scripts/shellib.sh
+  467  next_resolution 
+  468  switch_resolution 800x600
+  469  vim ~/personal/scripts/shellib.sh
+  470  reload
+  471  next_resolution 
+  472  next_resolution 
+  473  next_resolution 
+  474  switch_resolution 800x600
+  475  vim ~/personal/scripts/shellib.sh
+  476  vim ~/personal/scripts/shellib.sh
+  477  reload
+  478  next_resolution 
+  479  next_resolution 
+  480  vim ~/personal/scripts/shellib.sh
+  481  reload
+  482  switch_resolution 800x600
+  483  vim ~/personal/scripts/shellib.sh
+  484  vim ~/personal/scripts/shellib.sh
+  485  reload
+  486  next_resolution 
+  487  next_resolution 
+  488  next_resolution 
+  489  reload
+  490  next_resolution 
+  491  switch_resolution 800x600
+  492  next_resolution 
+  493  switch_resolution 800x600
+  494  vim ~/personal/scripts/shellib.sh
+  495  vim ~/personal/scripts/shellib.sh
+  496  vim ~/personal/scripts/shellib.sh
+  497  reload
+  498  next_resolution 
+  499  next_resolution 
+  500  next_resolution 
+  501  vim ~/personal/scripts/shellib.sh
+  502  switch_resolution 800x600
+  503  vim ~/personal/scripts/shellib.sh
+  504  switch_resolution 800x600
+  505  next_resolution 
+  506  next_resolution 
+  507  switch_resolution 800x600
+  508  vim ~/personal/scripts/shellib.sh
+  509  reload
+  510  next_resolution 
+  511  next_resolution 
+  512  next_resolution 
+  513  next_resolution 
+  514  switch_resolution 800x600
+  515  vim ~/personal/scripts/shellib.sh
+  516  reload
+  517  next_resolution 
+  518  next_resolution 
+  519  next_resolution 
+  520  vim ~/personal/scripts/shellib.sh
+  521  switch_resolution 800x600
+  522  vim ~/personal/scripts/shellib.sh
+  523  reload
+  524  next_resolution 
+  525  next_resolution 
+  526  vim ~/personal/scripts/shellib.sh
+  527  next_resolution 
+  528  reload
+  529  next_resolution 
+  530  next_resolution 
+  531  history
+  532  history >> portable/history.log
+  533  dir
+  534  history >> personal/history.log
