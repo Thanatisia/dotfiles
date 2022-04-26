@@ -1,5 +1,5 @@
 "
-" vimwiki
+" vim-ripgrep
 "
 
 "=================
