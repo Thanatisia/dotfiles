@@ -1,5 +1,5 @@
 "
-" which-key
+" goyo
 "
 
 "=================
@@ -9,3 +9,6 @@
 "===================
 " Plugin Remappings 
 "===================
+
+" Toggle Goyo
+    nnoremap <leader>goyo :Goyo<CR>
