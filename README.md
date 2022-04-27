@@ -69,12 +69,12 @@ I am currently working on a Makefile/shellscript for easy installation
             ### Synopsis/Syntax ###
             
             # Symbolic link a relative path to the folder to prevent recursive folder links
-            ln -s -r  <source_path> <destination_path>
-            ```
+            # ln -s -r  <source_path> <destination_path>
+            
             ln -s -r /path/to/git/repo/config ~/.config
             ln -s -r /path/to/git/repo/.local ~/.local
             ln -s -r /path/to/git/repo/.vim ~/.vim
-            
+            ```
 
 ### Setup/Preparation
 
