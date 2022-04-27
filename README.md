@@ -30,9 +30,10 @@ I am currently working on a Makefile/shellscript for easy installation
 
 ### Screenshots
 
-<a href="assets/rice_screenshot.png">![Rice](https://raw.githubusercontent.com/asura/main/assets/rice_screenshot.png)</a>
-
+https://github.com/Thanatisia/dotfiles/blob/main/assets/rice_screenshot.png?raw=true
 
 ## Resources
+
+
 
 ## Remarks
