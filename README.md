@@ -28,6 +28,10 @@ I am currently working on a Makefile/shellscript for easy installation
 
 ## Documentation
 
+### Screenshots
+
++ ![Rice](https://raw.githubusercontent.com/asura/main/assets/rice_screenshot.png)
+
 ## Resources
 
 ## Remarks
