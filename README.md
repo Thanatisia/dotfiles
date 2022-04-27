@@ -30,7 +30,8 @@ I am currently working on a Makefile/shellscript for easy installation
 
 ### Screenshots
 
-+ ![Rice](https://raw.githubusercontent.com/asura/main/assets/rice_screenshot.png)
+<a href="assets/rice_screenshot.png">![Rice](https://raw.githubusercontent.com/asura/main/assets/rice_screenshot.png)</a>
+
 
 ## Resources
 

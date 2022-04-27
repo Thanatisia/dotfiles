@@ -1,0 +1,5 @@
+# .gitignore
+
+# XOrg Log Files
+./.local/share/xorg/
+
