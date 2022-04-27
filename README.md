@@ -30,7 +30,7 @@ I am currently working on a Makefile/shellscript for easy installation
 
 ### Screenshots
 
-https://github.com/Thanatisia/dotfiles/blob/main/assets/rice_screenshot.png?raw=true
+![Rice Screenshot](https://github.com/Thanatisia/dotfiles/blob/main/assets/rice_screenshot.png?raw=true)
 
 ## Resources
 
