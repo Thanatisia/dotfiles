@@ -24,6 +24,13 @@ super + shift + f
 super + shift + b
     firefox
 
+# Screenshots
+F12
+    scrot && notify-send -t 5000 "Screenshot Taken" "Screenshot taken and saved to $HOME"
+
+# Scratchpad Test
+
+
 #
 # bspwm hotkeys
 #
