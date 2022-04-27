@@ -8,15 +8,35 @@ Lemonbar Driver Script
 killall -q lemonbar
 killall -q lemonconfig
 
+declare -A LEMON_COLORS=(
+    [light-blue]="#268bd2"
+    [grey]="#FF222222"
+    [grey-transparent]="#FF22222200"
+    [white]="#FFFFFFFF"
+)
+
 main()
 {
-    $(dirname $0)/lemonconfig | lemonbar -p -g 1920x32+0+0 \
-        -F "#FFFFFFFF" \
-        -B "#FF222222" \
-        -U "#268bd2" \
+    ### Variables ###
+
+    ## System Information
+	curr_monitor_resolution=`xrandr | grep 'primary' | cut -d ' ' -f4 | cut -d '+' -f1 | cut -d ' ' -f4`
+    curr_width=`echo "$curr_monitor_resolution" | cut -d 'x' -f1`
+    curr_height=`echo "$curr_monitor_resolution" | cut -d 'x' -f2`
+    
+    ## Local Variable
+    width=$curr_width
+    height=32
+   
+    # Runner
+    $(dirname $0)/lemonconfig | lemonbar -p \
+        -g ${width}x${height}+0+0 \
+        -F "${LEMON_COLORS["white"]}" \
+        -B "${LEMON_COLORS["grey-transparent"]}" \
+        -U "${LEMON_COLORS["light-blue"]}" \
         -u 3 \
         -o -4 \
-        -f "Hack Nerd Font"-14 \
+        -f "JetBrains Mono Medium"-14 \
         -o -2 \
         -f "Hack Nerd Font"-18 | $SHELL
 }
