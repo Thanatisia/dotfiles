@@ -340,6 +340,7 @@ endfor
 	set clipboard=unnamed
     set path+=**                        " ** indicates to search all files and directories and in all subdirectories of that directory
     set cursorline                      " Highlight current line
+    set cursorcolumn                    " Highlight current column
     set mouse=a
 "Set for auto/tab completion
     set wildmode=list:longest,full
@@ -374,6 +375,10 @@ if has('gui_running')
         GuiPopupmenu 0
 endif
 
+" Highlight
+    highlight CursorLine term=bold cterm=bold ctermbg=None guibg=NONE guifg=NONE
+    highlight CursorColumn term=bold cterm=bold ctermbg=None guibg=NONE guifg=NONE
+
 "------------------------------------------------------------------------
 
 "===========================
@@ -389,7 +394,7 @@ endif
     " Re-source Current File
         silent nnoremap <leader>rs :so %<CR> 
     " Re-source VimRC
-        silent nnoremap <expr> <leader>rvimrc ':so ' . vimcfg . '/.vimrc <CR>'
+        silent nnoremap <expr> <leader>rvimrc ':so ' . vimcfg . '/vimrc <CR>'
     " Refresh File
         nnoremap <leader><F5> :e!<CR>
 " Bug-Fixing
