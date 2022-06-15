@@ -109,6 +109,9 @@
 " =========
 " Variables
 " =========
+" Global Variables
+let os=""
+let variant="base"
 
 "Constants
 	let mapleader=","
@@ -118,9 +121,12 @@
 if has('nvim')
     " Is nvim
     let vimhome=stdpath('config')
+    let vimname='.vimrc'
+    let variant="nvim"
 else
     " Is vim
-    let vimhome=$HOME
+    let vimhome=expand('%:p:h')
+    let vimname='vimrc'
 endif
 
 " Check Operating System
@@ -129,6 +135,7 @@ if has('win32')
     "------------
     " Variables
     "------------
+    let os="windows"
     let vimfldr='/vimfiles'
     let key_Compile='<leader>c'
     let key_Run='<leader>r'
@@ -138,6 +145,7 @@ else
     "-----------
     " Variables
     "-----------
+    let os="*nix"
     let vimfldr='/.vim'
     let key_Compile='<F5>'
     let key_Run='<F6>'
@@ -148,9 +156,42 @@ let g:vimcfg=vimhome . vimfldr
 
 "------------------------------------------------------------------------
 
+"======================
+" Filesystem Structure
+"======================
+let fs=[
+    \ vimhome . '/tmp/documents/'
+    \ ]
+
+" Create default/extra Filesystem Structure (Files/Folders) if doesnt exist
+for item in fs
+    " Check if folder exists
+    if !isdirectory(item)
+        " If directory does not exist
+        " make directory
+        echo "Initial Creation of folder" . ' ' . item . ' ' . "Created."
+        call mkdir(item, "p")
+    endif
+endfor
+
+"------------------------------------------------------------------------
+
 "===========================
 " Plugins
 "===========================
+
+" Dependencies: 
+"   + curl
+"   + git
+" - Check if Vim is 'nvim': If is nvim, plugin data directory is 'nvim_data_dir/site/autoload/plug.vim', Else if is pure vim: plugin data directory is '~/.vim/autoload/plug.vim
+let plugin_data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim' 
+" Automatic download of Plugin Manager
+if empty(glob(plugin_data_dir . '/autoload/plug.vim'))
+    " If plug.vim doesnt exist
+    " - Download
+    silent execute '!curl -fLo' . ' ' . plugin_data_dir . '/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
 " Start Plugin
 	call plug#begin()
@@ -162,8 +203,12 @@ let g:vimcfg=vimhome . vimfldr
 " Syntax : Plug 'author/project', { 'key' : 'value' }
 
     " Language-support
+    Plug 'preservim/vim-markdown'
+    " Designs
+    Plug 'ap/vim-css-color'
     " Colorscheme
     Plug 'morhetz/gruvbox'
+    Plug 'sainnhe/gruvbox-material'
     Plug 'crusoexia/vim-monokai'
     Plug 'ayu-theme/ayu-vim'
     Plug 'kyoz/purify', {'rtp' : 'vim'}
@@ -198,6 +243,7 @@ let g:vimcfg=vimhome . vimfldr
     Plug 'Yggdroot/indentLine'
     Plug 'mbbill/undotree'
     Plug 'junegunn/goyo.vim'
+    Plug 'mhinz/vim-startify' " Provides a start screen for vim/nvim on initial startup without a file
     " Expansion Plugin
         " NERDTree Expansion Plugin
             Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -209,7 +255,7 @@ let g:vimcfg=vimhome . vimfldr
     " Dependency-required
         " Tree File Browser
             Plug 'ptzz/lf.vim'
-            Plug 'vifm/vifm.vim'
+            Plug 'istib/vifm.vim'
         " Fuzzy File Finder
             Plug 'junegunn/fzf', { 'dir' : g:vimcfg . '/plugins/.fzf' , 'do' : { -> fzf#install() } }
             Plug 'junegunn/fzf.vim'
@@ -248,7 +294,9 @@ let plugin_names = [
             \ 'vifm',
             \ 'vim-airline',
             \ 'vim-airline-themes',
+            \ 'vim-markdown',
             \ 'vim-ripgrep',
+            \ 'vim-startify',
             \ 'vimwiki',
             \ 'vim-visual-multi',
             \ 'which-key',
@@ -302,6 +350,26 @@ endfor
     " Clean Plugin
         nmap <leader>pc :PlugClean<CR>
 
+"======================="
+" Source External Files "
+"======================="
+let ext_Files = [
+    \ g:vimcfg . '/configs/local/functions.vim',
+    \ g:vimcfg . '/configs/local/commands.vim' ,
+    \ g:vimcfg . '/configs/local/autorun.vim'
+    \ ]
+" Loop all external files created and source them
+for ext_File in ext_Files
+    " Check if current file exists
+    if filereadable(ext_File)
+        " If file exists
+        " source the file
+        execute 'source ' . ext_File
+    else
+        echo ext_File . ' is not sourced'
+    endif
+endfor
+
 "-----------------------------------------------------------------------
 
 " ===========================
@@ -323,6 +391,7 @@ endfor
 	set expandtab
 	set tabstop=4
 	set shiftwidth=4
+    "set softtabstop=4
 "Set Options
     set titlestring=%t 
     set confirm
@@ -359,15 +428,17 @@ endfor
 
 "Set Colorscheme
     if exists('+termguicolors')
+        " To enable true colours
         let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
         let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
         set termguicolors
     endif
     set t_Co=256
     " :colorscheme gruvbox
+    :colorscheme gruvbox-material
     " :colorscheme ayu
     " :colorscheme monokai
-    :colorscheme purify
+    " :colorscheme purify
 
 "GUI-Specific
 if has('gui_running')
@@ -375,9 +446,12 @@ if has('gui_running')
         GuiPopupmenu 0
 endif
 
-" Highlight
-    highlight CursorLine term=bold cterm=bold ctermbg=None guibg=NONE guifg=NONE
-    highlight CursorColumn term=bold cterm=bold ctermbg=None guibg=NONE guifg=NONE
+"Set Highlighting
+    " Commenting
+        highlight Comment guifg=DarkGray 
+    " Cursor Line (Row) and Column
+        highlight CursorLine term=underline cterm=underline ctermbg=darkgray ctermfg=None guibg=Grey20 guifg=None
+        highlight CursorColumn term=bold cterm=bold ctermbg=darkgray ctermfg=None guibg=Grey20 guifg=None
 
 "------------------------------------------------------------------------
 
@@ -394,15 +468,25 @@ endif
     " Re-source Current File
         silent nnoremap <leader>rs :so %<CR> 
     " Re-source VimRC
-        silent nnoremap <expr> <leader>rvimrc ':so ' . vimcfg . '/vimrc <CR>'
+        silent nnoremap <expr> <leader>rvimrc ':so ' . vimcfg . '/' . vimname . '<CR>'
     " Refresh File
         nnoremap <leader><F5> :e!<CR>
+" Help
+    " Check variables for currently set values based on keyword
+        nnoremap <expr> <leader>?env ':echo' . ' ' . '$' . input("Environment Variable: ") . "<CR>"
+        nnoremap <expr> <leader>?sys ':echo' . ' ' . '&' . input("System Variable: ") . "<CR>"
+        nnoremap <expr> <leader>?set ':set' . ' ' . input("Settings to check: ") . '?' . "<CR>"
+    " Validation
+        nnoremap <expr> <leader>?val ':verbose' . ' ' . input('Type: ') . ' ' . input('Keyword: ') . "<CR>" 
 " Bug-Fixing
 " Quality of Life
     " Wrap selected texts in Quotation Marks '"'
         vnoremap " <esc>`>a"<esc>`<i"<esc>
     " Clear last search highlighting
-        nnoremap <leader>shc :noh<CR>
+        nnoremap <leader>csh :noh<CR>
+    " Reselect visual selection after indenting
+        vnoremap < <gv
+        vnoremap > >gv
 " Movement
 	vnoremap J :m '>+1<CR>gv=gv		
 	vnoremap K :m '<-2<CR>gv=gv		
@@ -527,34 +611,31 @@ endif
 "===========================
 
 " File Type-specific Remap
-
-" C-based : Compile the current source file with gcc
-    augroup CKeys autocmd FileType c
-        execute 'nnoremap <buffer> ' . key_Compile . ' :w<CR>:!gcc "%" -o "%:r".exe && echo " Compilation Successful." <CR>'
-        execute 'nnoremap <buffer> ' . key_Run . ' :!"%:r".exe<CR>'
-        execute 'nnoremap <buffer> ' . key_Compile_Run . ' :w<CR>:!gcc "%" -o "%:r".exe<CR> :!%:r.exe<CR>'
-    augroup END
-" C++-based : Compile the current source file with g++
-    augroup CPPKeys autocmd FileType cpp
-        execute 'nnoremap <buffer> ' . key_Compile . ' :w<CR>:!g++ "%" -o "%:r".exe && echo " Compilation Successful." <CR>'
-        execute 'nnoremap <buffer> ' . key_Run . ' :!"%:r".exe<CR>'
-        execute 'nnoremap <buffer> ' . key_Compile_Run . ' :w<CR>:!g++ "%" -o "%:r".exe<CR> :!"%:r".exe<CR>'
-    augroup END
-" Python-based : Run with python the current source file without arguments
-    augroup PythonKeys autocmd FileType python 
-        execute 'nnoremap <buffer> ' . key_Run . ' :w<CR>:!python "%"<CR>'
-    augroup END
-" Shellscript : Run the current source file without arguments with Shell (Bash)
-    augroup ShellscriptKeys autocmd FileType sh
-        execute 'nnoremap <buffer> ' . key_Run . ' :w<CR>:!./"%"<CR>'
-    augroup END
-" Batch-based : Run the current source file without arguments with batch
-    augroup BatchKeys autocmd FileType dosbatch
-        execute 'nnoremap <buffer> ' . key_Run . ' :w<CR>:!"%"<CR>'
-    augroup END
-" Javascript-based : Run the current source file without arguments with batch
-    augroup BatchKeys autocmd FileType Javascript
-        execute 'nnoremap <buffer> ' . key_Run . ' :w<CR>:!node "%"<CR>'
+    augroup filetype 
+        " Clear all autocommands
+        autocmd! 
+        " C-based : Compile the current source file with gcc
+        autocmd FileType c 
+            \ execute 'nnoremap <buffer> ' . key_Compile . ' :w<CR>:!gcc "%" -o "%:r".exe && echo " Compilation Successful." <CR>'
+            \ execute 'nnoremap <buffer> ' . key_Run . ' :!"%:r".exe<CR>'
+            \ execute 'nnoremap <buffer> ' . key_Compile_Run . ' :w<CR>:!gcc "%" -o "%:r".exe<CR> :!%:r.exe<CR>'
+        " C++-based : Compile the current source file with g++
+        autocmd FileType cpp
+            \ execute 'nnoremap <buffer> ' . key_Compile . ' :w<CR>:!g++ "%" -o "%:r".exe && echo " Compilation Successful." <CR>'
+            \ execute 'nnoremap <buffer> ' . key_Run . ' :!"%:r".exe<CR>'
+            \ execute 'nnoremap <buffer> ' . key_Compile_Run . ' :w<CR>:!g++ "%" -o "%:r".exe<CR> :!"%:r".exe<CR>'
+        " Python-based : Run with python the current source file without arguments
+        autocmd FileType python 
+            \ execute 'nnoremap <buffer> ' . key_Run . ' :w<CR>:!python "%" '
+        " Shellscript : Run the current source file without arguments with Shell (Bash)
+        autocmd FileType sh
+            \ execute 'nnoremap <buffer> ' . key_Run . ' :w<CR>:!./"%"<CR>'
+        " Batch-based : Run the current source file without arguments with batch
+        autocmd FileType dosbatch
+            \ execute 'nnoremap <buffer> ' . key_Run . ' :w<CR>:!"%"<CR>'
+        " Javascript-based : Run the current source file without arguments with batch
+        autocmd FileType Javascript
+            \ execute 'nnoremap <buffer> ' . key_Run . ' :w<CR>:!node "%"<CR>'
     augroup END
 
 " Templates
@@ -644,33 +725,35 @@ endif
 " VimRC - Functions
 "===============================
 
-
-"===============================
-" VimRC - Functions (Predefined)
-"===============================
-"set diffexpr=MyDiff()
-"function MyDiff()
-  "let opt = '-a --binary '
-  "if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
-  "if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
-  "let arg1 = v:fname_in
-  "if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
-  "let arg2 = v:fname_new
-  "if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
-  "let arg3 = v:fname_out
-  "if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
-  "let eq = ''
-  "if $VIMRUNTIME =~ ' '
-    "if &sh =~ '\<cmd'
-      "let cmd = '""' . $VIMRUNTIME . '\diff"'
-      "let eq = '"'
-    "else
-      "let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
-    "endif
-  "else
-    "let cmd = $VIMRUNTIME . '\diff'
-  "endif
-  "silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
-"endfunction
+if os == "windows"
+    " Only for Windows
+    "===============================
+    " VimRC - Functions (Predefined)
+    "===============================
+    set diffexpr=MyDiff()
+    function MyDiff()
+      let opt = '-a --binary '
+      if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
+      if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
+      let arg1 = v:fname_in
+      if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
+      let arg2 = v:fname_new
+      if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
+      let arg3 = v:fname_out
+      if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
+      let eq = ''
+      if $VIMRUNTIME =~ ' '
+        if &sh =~ '\<cmd'
+          let cmd = '""' . $VIMRUNTIME . '\diff"'
+          let eq = '"'
+        else
+          let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
+        endif
+      else
+        let cmd = $VIMRUNTIME . '\diff'
+      endif
+      silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
+    endfunction
+endif
 
 "------------------------------------------------------------------------

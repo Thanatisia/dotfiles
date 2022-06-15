@@ -34,6 +34,14 @@
                     \ ]
 
     " coc-explorer
+        let g:coc_explorer_global_presets = {
+            \   'floatingRightside' : {
+            \       'position' : 'floating',
+            \       'floating-position': 'right-center',
+            \       'floating-width': 50,
+            \       'open-action-strategy': 'sourceWindow',
+            \   }  
+            \ }
 
     " coc-snippets
         " let g:coc_snippet_next = '<c-s>n'
@@ -59,6 +67,7 @@
         " coc-explorer
             nnoremap <leader>e :CocCommand explorer<CR>
             nnoremap <leader>efl :CocCommand explorer --preset floating<CR>
+            nnoremap <leader>efr :CocCommand explorer --preset floatingRightside<CR>
             nnoremap <expr> <leader>es ':CocCommand explorer --sources=' . input("Sources: ") . ' ' . input("Path: ") . '<CR>'
             nnoremap <expr> <leader>ef ':CocCommand explorer ' . input("Path: ") . '<CR>'
 

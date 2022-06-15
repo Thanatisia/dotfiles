@@ -1,0 +1,258 @@
+: " dotfileinstall
+Simple dotfile setup installer
+
+## Information
+
+A simple, modular, portable, dynamic dotfiles setup/installer that will simplify installation and setup of the dotfiles through a simple script use instead of markdown. 
+
+As this is designed with portability in mind, you can (in theory and design) place this on the root of your dotfile. 
+
+On run, the program will 
+	1. Retrieve all folders and files in your workspace
+		- All children files and folders nested within and inclusive of the current folder
+	2. Process and extract all files/folders found in 'excludes'
+		- Remaining files/folders will be used
+	3. Check all remaining folder/files for an explicit path found in 'target_paths'
+		3.1.1. If is  found - Retrieve the explicitly-specified destination path and symlink to that
+    		3.1.2. If not found - Ask user for target location to symlink to
+
+### NOTES
+
+- This is still a WIP, thus is in development and your mileage may vary at this juncture, please do not use this in your proper production until you have used this at least once on a dev environment and/or am sure it will work with your current workspace.
+
+### Features
+
+## Documentation
+
+### Synopsis/Syntax
+
+chmod +x dotfileinstall
+./dotfileinstall [{options} [arguments]...]
+
+### Parameters
+
+- General Usage
+	-h | --help : Displays this help menu
+	-v | --version : Displays the version message
+
+- Menu
+
+- Controls
+	-i | --install : Indicates the flag to Start installation process (start_Flag [false => true])
+	-c | --check : Indicates the flag to run Checking/verification process (check_Flag [false => true])
+		- System will run the program without executing, just echoing the processes for your specified information
+
+### Usage
+
+"
+
+# Global Variables
+# #EDIT - Specify excludes
+excludes=(
+    # These files or folder paths are to be excluded
+    .git	# Folder
+    .gitignore	# File
+    README.md	# File
+    LICENSE	# File
+)
+
+# #EDIT - Specify explicit target paths for dotfile symlink
+declare -A target_paths=(
+    # Specify all folders
+    # [initial/source/dotfile/folder/path]="explicit/destination/path/to/symlink" 
+    [.local]="~/.local"
+    [.vim]="~/.vim"
+    [config]="~/.config"
+    [.bash_profile]="~/.bash_profile"
+    [.bashrc]="~/.bashrc"
+    [.xinitrc]="~/.xinitrc"
+)
+
+# Temporary Variables
+cfg_success=(
+    # List of successful configs
+)
+cfg_errors=(
+    # List of configs that failed
+)
+
+# Functions
+
+Format()
+{
+	: "
+	Format the input string with design
+	"
+	msg=$1
+	GREEN=""
+	printf "\t ${GREEN} : $msg"
+}
+
+get_Dotfiles()
+{
+    : "
+    1. Get all dotfiles folders in the repository
+    # excluding all found in ${excludes[@]}
+    # and store into an associative array/array
+    "
+    cfgs=(*) # Get all dotfiles
+
+    # Return
+    echo "${cfgs[@]}"
+}
+
+remove_elements_by_list()
+{
+    : "
+    Remove elements of a list found in another list as specification
+
+    ## Documentation
+
+    ### Synopsis/Syntax
+
+	new_arr=(`remove_elements_by_list "${src_arr[@]}" "${to_remove[@]}"`)
+
+    ### Parameters
+
+    ### Usage
+
+	- Define requirements	
+	    src_arr=("Hello World!" "element 2" "Hello again")
+	    to_remove=("Hello World")
+
+        - Run function
+            new_arr=(`remove_elements_by_list "${src_arr[@]}" "${to_remove[@]}"`)
+
+	- Display array
+	    echo ${new_arr[@]}" 
+    "
+
+    # Local Variables
+    src_arr=($@)
+    to_remove=($@)
+    res_arr=()
+
+    # Remove elements from src_arr specified in to_remove list
+    : " 
+    # Initial Design
+    for i in "${src_arr[@]}"; do
+        curr_keyword="${src_arr[$i]}"
+	for j in "${to_remove[@]}"; do
+            target_keyword="${to_remove[$j]}"
+	    
+	    # Check if keyword in to_remove is found in src_arr
+            if [[ ! "$curr_keyword" == "$target_keyword" ]]; then
+		# Remove from src_arr		
+	    fi
+        done
+    done
+    "
+    for del in "${to_remove[@]}"; do
+	# To delete : ("${target_arr[@]/$your_word_to_delete}")
+	# Use '/' in "${}" to delete
+	# Syntax: ("${ [target array] / [your_word_to_delete] } ")
+	src_arr=("${src_arr[@]/$del}") #Quotes when working with strings    
+    done
+
+    # Copy src_arr => res_array
+    res_arr=("${src_arr[@]}")
+
+    # Return
+    echo "${res_arr[@]}"
+}
+
+place_symlinks()
+{
+    : "
+    2. Loop through stored array and
+    # 2.1 Check if current file in the array is found in ${!target_paths[@]}
+    # 2.1.1. If is  found - Retrieve the explicitly-specified destination path and symlink to that
+    # 2.1.2. If not found - Ask user for target location to symlink to
+    "
+    # Command Line Arguments
+    stored_arr=("$@")
+
+    # Local Variables
+    ret_Code=0
+
+    # Body
+    for cfg in "${stored_arr[@]}"; do
+	# Check explicitly-specified paths
+        for curr_src in "${!target_paths[@]}"; do
+	    # Check if current config path is found in the key of the target_paths
+	    if [[ "$cfg" == "$curr_src" ]]; then
+		# Explicit config symlink path definition found
+		# Symlink
+	        
+		# Get Explicit destination path for current loop's source file for use
+		# if comparison is found
+		dst_Path="${target_paths[$curr_src]}"
+
+		ln -s -r "$cfg" "$dst_Path" && \
+			echo -e "Symbolic Link for [$cfg => $dst_Path] : Success" || \
+			echo -e "Symbolic Link for [$cfg => $dst_Path] : Failed"
+	    else
+		# Explicit config symlink path definition not found
+		# Ask user for destination path to symlink to
+		read -p "Destination path to create symbolic link for source ["$cfg"]?: " symlink_dst
+
+		# Process User Input
+		if [[ "$symlink_dst" == "" ]]; then
+		    # Empty - skip
+		    echo -e "No destination path specified, skipping ["$cfg"]..."
+		    cfg_errors+=("$cfg") # Append to error list
+		else
+		    # Found
+		    # Symlink to specified path
+		    ln -s -r "$cfg" "$symlink_dst" && \
+			echo -e "Symbolic Link for [$cfg => $symlink_dst] : Success" || \
+			echo -e "Symbolic Link for [$cfg => $symlink_dst] : Failed"
+		fi
+	    fi
+	done
+    done
+
+    # Return Code
+    ret_Code=$?
+    echo $ret_Code
+}
+
+body()
+{
+    # 1. Get all dotfiles folders in the repository
+    # excluding all found in ${excludes[@]}
+    # and store into an associative array/array
+    all_dotfiles=(`get_Dotfiles`)
+
+    # Extract all excludes
+    all_dotfiles=(`remove_elements_by_list "${all_dotfiles[@]}" "${excludes[@]}"`)
+
+    # 2. Loop through stored array and
+    # 2.1 Check if current file in the array is found in ${!target_paths[@]}
+    # 2.1.1. If is  found - Retrieve the explicitly-specified destination path and symlink to that
+    # 2.1.2. If not found - Ask user for target location to symlink to
+    ret_Code=`$(place_symlinks "${all_dotfiles[@]}")`
+
+    # Process Return
+    if [[ "$ret_Code" == 0 ]]; then
+	# Success
+	echo -e "Dotfile transferred successfully."
+    else
+	# >= 0 : Error
+	echo -e "Error transferring dotfiles"
+    fi
+}
+
+main()
+{
+    argv=("$@")
+    argc="${#argv[@]}"
+
+    echo "Arguments: "
+    for i in $argc; do
+	printf "\t${argv[$i]}"
+    done
+}
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+	main $@
+fi

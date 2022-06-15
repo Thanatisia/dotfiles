@@ -3,3 +3,6 @@
 # XOrg Log Files
 ./.local/share/xorg/
 
+# COC because it is too darn long
+./config/coc/extensions/
+
