@@ -20,4 +20,4 @@
 "===================
 
 " Open Vimwiki
-    nnoremap <leader>vw <Leader>ww
+    nnoremap <leader>vw :VimwikiIndex<CR>

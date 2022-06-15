@@ -51,8 +51,8 @@ endif
 " -----------------
 " Local Variables
 " -----------------
-let nvim_data_root="data/nvim-data"
-let nvim_root='data/nvim'
+let nvim_data_root=path_data
+let nvim_root=path_config
 let path_autoload_plug=nvim_data_root . '/site/autoload'
 
 let vim_plugin_dir=nvim_data_root . '/plugged'
@@ -97,7 +97,7 @@ if vim_plugin_manager=="vim-plug"
 	let plugin_manager_url='https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 endif
 
-let cmd='!curl -fLo ' . autoload_plug . ' --create-dirs ' . plugin_manager_url
+let cmd='!curl -fLo' . ' ' . '"' . autoload_plug . '"' . ' ' . '--create-dirs' . ' ' . plugin_manager_url
 
 "==============
 " Body
@@ -124,7 +124,7 @@ for fldr in fldrs_to_create
     "endif
     if !isdirectory(fldr)
         echom 'Folder ' . fldr . ' does not exist, Creating...'
-        call mkdir(fldr)
+        call mkdir(fldr, "p")
     endif
 endfor
 
@@ -133,7 +133,9 @@ if !filereadable(autoload_plug)
 	" Download plugin manager file if doesnt exist using curl
 	echo "File does not exists"
 	echo "Downloading " . plugin_manager_filename
-	silent execute '!curl -fLo ' . autoload_plug . ' --create-dirs ' . plugin_manager_url
+	" silent execute '!curl -fLo ' . autoload_plug . ' --create-dirs ' . plugin_manager_url
+	echom "Command : " . cmd
+	silent execute cmd
 
 	" Check if download is successful
 	if filereadable(autoload_plug)
