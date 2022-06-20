@@ -30,7 +30,9 @@
                     \ 'coc-pyright',
                     \ 'coc-vimlsp',
                     \ 'coc-webview',
-                    \ 'coc-markdown-preview-enhanced'
+                    \ 'coc-markdown-preview-enhanced',
+                    \ 'coc-markdownlint',
+                    \ 'coc-sh'
                     \ ]
 
     " coc-explorer

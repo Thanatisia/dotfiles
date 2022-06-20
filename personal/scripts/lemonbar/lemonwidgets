@@ -18,7 +18,7 @@ Clock()
     # format=${1:-"%a %b %d, %T"}
     # DATETIME=$(date "+$format")
     DATE=$(date +"%d/%m/%y")
-    TIME=$(date +"%I:%M:%S")
+    TIME=$(date +"%H:%M:%S")
 
     # printf "$DATETIME"
     # echo "$DATETIME"
@@ -38,6 +38,10 @@ ActiveWindow()
 {
     # printf " $(xdotool getwindowfocus getwindowname)"
     curr_window=$(xdotool getwindowfocus getwindowname)
+
+    # Get Length of Window
+    win_name_len="${#curr_window[@]}"
+
     if [[ ! "$curr_window" == "" ]]; then
         Format "$(xdotool getwindowfocus getwindowname)"
     else
@@ -70,4 +74,16 @@ Packages()
     Format "$(sudo pacman -Qu | wc -l)"
 }
 
+PackageUpdates()
+{
+    : "
+    Check for updates available in
+    Package Manager
+    "
+    pkg_Updates=`pacman -Qu`
+    pkg_update_Count=`sudo pacman -Qu | wc -l`
 
+    if [[ "$pkg_update_Count" -gt 0 ]]; then
+        Format "$pkg_update_Count packages found"
+    fi
+}
