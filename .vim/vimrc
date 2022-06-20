@@ -125,7 +125,7 @@ if has('nvim')
     let variant="nvim"
 else
     " Is vim
-    let vimhome=expand('%:p:h')
+    let vimhome=$HOME
     let vimname='vimrc'
 endif
 
@@ -255,7 +255,7 @@ endif
     " Dependency-required
         " Tree File Browser
             Plug 'ptzz/lf.vim'
-            Plug 'istib/vifm.vim'
+            Plug 'vifm/vifm.vim'
         " Fuzzy File Finder
             Plug 'junegunn/fzf', { 'dir' : g:vimcfg . '/plugins/.fzf' , 'do' : { -> fzf#install() } }
             Plug 'junegunn/fzf.vim'
@@ -387,6 +387,7 @@ endfor
     set guifont=Hack\ Nerd\ Font:h11
     "set guifont="Iosevka"
     set encoding=UTF-8
+    set term=xterm
 "Set Tab Spaces to 4 spaces
 	set expandtab
 	set tabstop=4
@@ -450,8 +451,8 @@ endif
     " Commenting
         highlight Comment guifg=DarkGray 
     " Cursor Line (Row) and Column
-        highlight CursorLine term=underline cterm=underline ctermbg=darkgray ctermfg=None guibg=Grey20 guifg=None
-        highlight CursorColumn term=bold cterm=bold ctermbg=darkgray ctermfg=None guibg=Grey20 guifg=None
+        highlight CursorLine term=underline cterm=underline ctermbg=darkgray ctermfg=None guibg=Grey20 
+        highlight CursorColumn term=bold cterm=bold ctermbg=darkgray ctermfg=None guibg=Grey20 
 
 "------------------------------------------------------------------------
 
