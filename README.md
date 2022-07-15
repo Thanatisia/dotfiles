@@ -32,17 +32,21 @@ These are my general configuration files
 
 ### Pre-Requisites
 
++ git
+
 ### Dependencies
 
-- base-devel
-- git
-- feh
-- lemonbar
-- xautolock
-- xdotool
-- imagemagick
-- bspwm
-- sxhkd
+- Official Repository
+    + base-devel
+    + bspwm
+    + feh
+    + imagemagick
+    + sxhkd
+    + xautolock
+    + xdotool
+- Community
+    - AUR
+        + [lemonbar-xft](https://aur.archlinux.org/lemonbar-xft-git.git)
 
 ### Obtaining
 

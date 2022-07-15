@@ -1,0 +1,7 @@
+base-devel
+bspwm
+feh
+imagemagick
+sxhkd
+xdotool
+xautolock

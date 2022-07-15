@@ -1,0 +1,252 @@
+#!/bin/env bash
+<<EOF
+Simple Dotfile Installer
+
+## Information
+### Description
+
+## Setup
+
+### Pre-Requisites
+
+## Documentation
+
+### Synopsis/Syntax
+
+(./)dotinstall [{options} [arguments]...]
+
+### Parameters
+
+#### Main Activity Options
++ -i | --install  : Start dotfile installation
++ -c | --clean    : Clean, remove and uninstall all installed dotfiles (as much as possible)
+
+#### Setter Options
++ -d [distro-name] | --distribution [distro-name] : Set your base distribution
++ -p [package-manager] | --package-manager [package-manager] : Explicitly specify your package manager
++ -P {official|git|aur} [packages] | --packages {official|git|aur} [packages] : Specify list of packages and location
+
+#### Getter Options
++ -a | --all        : Get all files and folders in dotfile
++ -f | --files      : Get all files in dotfile
++ -F | --folders    : Get all folders in dotfile
++ -V | --verbose    : Set 'verbose' flag to True; Display verbose standard output
+
+#### General Options
++ -h | --help       : Display this help menu
++ -v | --version    : Display current system version information
+
+### Usage
+EOF
+
+pkg_install()
+{
+    ### Install packages
+    # Install official packages
+    echo -e "sudo pacman -S - < pkglist.pacman.txt"
+    
+    # Install community packages
+    for pkg_name in "${!AUR_PKGS[@]}"; do
+        pkg_url="${AUR_PKGS[$pkg_name]}"
+        echo -e "sudo git clone $pkg_url"
+        echo -e "cd $pkg_name"
+        echo -e "makepkg -si"
+    done
+}
+
+read_assoc_file()
+{
+    : "
+    Read files with key-value dictionary and store as Associative Array
+    "
+    IN_FILE_NAME="$1"
+    declare -A assoc=("$2")
+
+    readarray -t lines < "$IN_FILE_NAME"
+    for line in "${lines[@]}"; do
+        key=${line%%=*}
+        value=${line#*=}
+        assoc[$key]=$value 
+    done
+}
+
+display_Summary()
+{
+    # Display Summary
+    echo -e "Distribution : ${arg_options["distribution"]}"
+    echo -e "Package Manager : ${arg_options["package-manager"]}"
+
+    echo -e "Official Packages to install : ${OFFICIAL_PKGS[@]}"
+    echo -e "Community Packages to install : "
+    echo -e "\tGit : ${COMMUNITY_PKGS["git"]}"
+    echo -e "\tAUR : ${COMMUNITY_PKGS["aur"]}"
+}
+
+init()
+{
+    : "
+    Initialize all variables
+    "
+    declare -gA flags=(
+        # Flags
+        [install]=False
+        [clean]=False
+        [distribution]=False
+        [package-manager]=False
+        [all]=False
+        [files]=False
+        [folders]=False
+        [verbose]=False
+    )
+    declare -gA arg_options=(
+        # Argument Options
+        [distribution]=""
+        [package-manager]=""
+    )
+
+    declare -g OFFICIAL_PKGS=("$(cat pkglist.pacman.txt)")
+    declare -gA GIT_PKGS=("$(cat pkglist.git.txt)")
+    declare -gA AUR_PKGS=()
+    read_assoc_file "pkglist.aur.txt" "${AUR_PKGS[@]}"
+}
+
+setup()
+{
+    : "
+    Setup all variables, functions to be loaded on runtime/boottime
+    "
+    init
+}
+
+main()
+{
+    argv="$@"
+    argc="${#argv[@]}"
+
+    # Get Command Line Argument/Options
+    if [[ "$argc" -gt 0 ]]; then
+        while [[ "$1" != "" ]]; do
+            arg="$1"
+            case "$arg" in
+                "-i" | "--install")
+                    # Start dotfile installation
+                    flags["install"]=True
+                    shift 1
+                    ;;
+                "-c" | "--clean")
+                    flags["clean"]=True
+                    shift 1
+                    ;;
+                "-d" | "--distribution")
+                    # Set your base distribution
+                    flags["distribution"]=True
+                    arg_options["distribution"]="${2:-'archlinux'}"
+                    if [[ "$2" == "" ]]; then
+                        shift 1
+                    else
+                        shift 2
+                    fi
+                    ;;
+                "-p" | "--package-manager")
+                    # Explicitly specify your package manager
+                    flags["package-manager"]=True
+                    arg_options["package-manager"]="${2:-'pacman'}"
+                    if [[ "$2" == "" ]]; then
+                        shift 1
+                    else
+                        shift 2
+                    fi
+                    ;;
+                "-a" | "--all")
+                    # Get all files and folders in dotfile
+                    flags["all"]=True
+                    shift 1
+                    ;;
+                "-f" | "--files")
+                    # Get all files in dotfile
+                    flags["files"]=True
+                    shift 1
+                    ;;
+                "-F" | "--folders")
+                    # Get all folders in dotfile
+                    flags["folders"]=True
+                    shift 1
+                    ;;
+                "-V" | "--verbose")
+                    # Set 'verbose' flag to True; Display verbose standard output
+                    flags["verbose"]=True
+                    shift 1
+                    ;;
+                "-h" | "--help")
+                    # Display this help menu
+                    menu_help
+                    exit
+                    ;;
+                "-v" | "--version")
+                    # Display current system version information
+                    version
+                    exit
+                    ;;
+                *)
+                    # Invalid Option
+                    menu_help
+                    shift 1
+                    ;;
+            esac
+        done
+    fi
+
+    # Process all options
+    for flag in "${!flags[@]}"; do
+        flag_value="${flags[$flag]}"
+        if [[ "$flag_value" == "True" ]]; then
+            case "$flag" in
+                "install")
+                    : "
+                    Start dotfile install
+                    "
+                    display_Summary
+
+                    # Install packages
+                    pkg_install
+                    ;;
+                "clean")
+                    # Clean and uninstall all installed packages, files or folders, symlinks created during installation
+                    ;;
+                "all")
+                    for object in home/*; do
+                        if [[ -f "$object" ]]; then
+                            echo -e "$object : file"
+                        fi
+
+                        if [[ -d "$object" ]]; then
+                            echo -e "$object : directory"
+                        fi
+                    done
+                    ;;
+                "files")
+                    for object in home/*; do
+                       if [[ -f $object ]]; then
+                            echo -e "$object"
+                       fi
+                    done
+                    ;;
+                "folders")
+                    for object in home/*; do
+                        if [[ -d $object ]]; then
+                            echo -e "$object"
+                        fi
+                    done
+                    ;;
+                *)
+                    # Invalid Option
+                    ;;
+            esac
+        fi
+    done 
+}
+
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+    setup
+    main "$@"
+fi
