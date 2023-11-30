@@ -1,0 +1,37 @@
+#!/bin/env bash
+<<EOF
+Launch Polybar
+EOF
+
+# Source all external libraries
+declare -A scripts=(
+	[polyvar]=~/.config/polybar/scripts
+	[polyfuncs]=~/.config/polybar/scripts
+	[polywidgets]=~/.config/polybar/scripts
+)
+for script_name in "${!scripts[@]}"; do
+	script_path="${scripts[$script_name]}"
+	script="$script_path/$script_name"
+	if 	[[ -f "$script" ]]; then
+		echo -e "[+] Sourcing $script..."
+		source "$script" && \
+			echo -e "[O] $script sourced." || \
+			echo -e "[X] Error sourcing $script"
+	fi
+done
+
+# Terminal all instances of the bar if already running
+killall -q polybar
+
+# If all your bars have ipc enabled, can also use
+# polybar-msg cmd quit
+
+# Launch Polybar using default config location '~/.config/polybar/config' in background
+bar_name="mybar"
+polybar $bar_name 2>&1 | tee -a /tmp/polybar.log &
+
+# Confirmation
+pgrep -x polybar && \
+	echo -e "(O) Polybar launched" || \
+	echo -e "(X) Error launching polybar"
+

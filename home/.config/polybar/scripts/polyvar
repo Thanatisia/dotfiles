@@ -1,0 +1,18 @@
+#!/bin/env bash
+
+<<EOF
+Variables for Bar
+
+:: Usage
+	# Change Permission
+	chmod u+x polyvar
+	# Source in your script
+	if [[ -f polyvar ]]; then
+		# Source
+		. polyvar
+	fi
+EOF
+
+declare -A colors=(
+
+)

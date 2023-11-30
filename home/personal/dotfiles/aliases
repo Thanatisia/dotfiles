@@ -1,0 +1,33 @@
+#!/bin/env bash
+### Aliases ###
+
+### System
+alias sysreboot="sudo reboot now"
+
+### Quality of Life
+alias path="echo $PATH"
+
+### Filesystem
+alias reload="source ~/.bashrc"
+alias ls="ls -lha"
+alias dir="dir --all"
+
+### Audio
+alias volup="amixer sset 'Master' playback 1+"
+alias voldown="amixer sset 'Master' playback -1"
+alias voltoggle="amixer sset 'Master' toggle"
+
+### Package Manager
+
+# - Portage package install
+alias pacinstall="sudo emerge -av" # Install packages
+alias pacuninstall="sudo emerge --ask --deselect"  # Uninstall packages
+alias pacclean="sudo emerge --ask --depclean" # Clean Dependencies
+alias pacupdg="sudo emerge --ask --verbose --update --newuse --deep @world" # Completely update and upgrade packages
+alias pacupdg_quiet="sudo emerge --ask --quiet --update --newuse --deep @world" # Completely update and upgrade packages
+alias pacsync="sudo emerge --sync"
+alias paclist="qlist -IRv"
+
+# - Portage news reader
+alias newslist="eselect news list"
+alias newsread="eselect news read"

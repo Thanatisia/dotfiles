@@ -1,0 +1,22 @@
+# Bashrc [Custom]
+#------------------------------------------------
+# Author: asura (https://github.com/Thanatisia) |
+#------------------------------------------------
+
+declare -A files=(
+	["aliases"]=~/personal/dotfiles
+	["functions"]=~/personal/dotfiles
+	["autorun"]=~/personal/dotfiles
+	["env"]=~/personal/dotfiles
+	["sources"]=~/personal/scripts
+)
+
+for f in "${!files[@]}"; do
+	f_name="$f"
+	f_path="${files[$f_name]}"
+	fullpath="$f_path/$f_name"
+	if [[ -f $fullpath ]]; then
+		# echo "[+] Sourcing $fullpath..."
+		source $fullpath
+	fi
+done

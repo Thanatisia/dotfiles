@@ -1,0 +1,90 @@
+#!/bin/env bash
+<<EOF
+Helper Functions for Bar
+EOF
+
+# Source Variables
+if [[ -f ~/.config/polybar/scripts/polyvar ]]; then
+	source ~/.config/polybar/scripts/polyvar
+else
+	echo -e "[X] Unable to source variable script [polyvar]"
+	exit
+fi
+
+Format()
+{
+	: "
+	Format Text
+	"
+	echo -e "\t$1"
+}
+
+FormatTextColors()
+{
+	: "
+	Format the text color of the input text
+	"
+	msg="$1"
+	format_color="$2"
+	new_text="$format_color$msg"
+}
+
+polyrestart()
+{
+	# Restart Bar
+	pgrep -x polybar > /dev/null
+	if [[ "$?" == "0" ]]; then
+		# Success = Found
+		pkill polybar && \
+			echo -e "[+] Successfully killed Polybar"
+	fi
+
+	~/.config/polybar/polylaunch & disown
+
+	if [[ "$?" == "0" ]]; then
+		# Found
+		echo -e "[+] Successfully restarted Polybar"
+	else
+		echo -e "[X] Error restarting Polybar"
+	fi
+}
+
+polykill()
+{
+	# Kill Bar
+	pgrep -x polybar > /dev/null
+	if [[ "$?" == "0" ]]; then
+		# Success = Found
+		pkill polybar && \
+			echo -e "[+] Successfully killed Polybar" || \
+			echo -e "[X] Error killing Polybar"
+	fi
+
+	# Fill padding/margin
+	if ! pgrep -x "polybar" > /dev/null; then
+		bspc config top_padding 0
+	fi
+}
+
+polytoggle()
+{
+	: "
+	Toggle Bar
+	"
+
+	# Kill Bar
+	if pgrep -x polybar > /dev/null; then
+		# Success = Found
+		pkill polybar && \
+			echo -e "[+] Successfully killed Polybar" || \
+			echo -e "[X] Error killing Polybar"
+
+		# Fill padding/margin
+		if ! pgrep -x "polybar" > /dev/null; then
+			bspc config top_padding 0
+		fi
+	else
+		# Not Found
+		~/.config/polybar/polylaunch & disown
+	fi
+}

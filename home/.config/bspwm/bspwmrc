@@ -1,0 +1,62 @@
+#! /bin/env bash
+
+<<EOF
+:: Table of Contents
+- Autostart
+- Display
+- Configurations
+- Rules
+EOF
+
+### Autostart ###
+
+pgrep -x sxhkd > /dev/null || sxhkd &
+pgrep -x polybar > /dev/null || ~/.config/polybar/polylaunch
+feh --bg-scale ~/personal/wallpapers/current.* &
+
+### Display ###
+
+declare -A bspc_monitors=(
+	[Virtual-1]="-d I II III IV V VI VII IX X"
+)
+
+for monitor in ${!bspc_monitors[@]}; do
+	monitor_params="${bspc_monitors[$monitor]}"
+	bspc monitor $monitor $monitor_params
+done
+
+### Configurations ###
+
+declare -A bspc_configs=(
+	# EDIT YOUR CONFIGS HERE
+	# [config_keyword]=value
+	[border_width]=5
+	[window_gap]=24
+	[split_ratio]=0.52
+	[borderless_monocle]=true
+	[gapless_monocle]=true
+)
+
+for config in ${!bspc_configs[@]}; do
+	config_defn=${bspc_configs[$config]}
+	bspc config $config $config_defn 
+done
+
+### Rules ###
+
+declare -A bspc_rules=(
+	# EDIT YOUR RULES HERE
+	# [class-name]="rules"
+	[Gimp]="desktop='^8' state=floating follow=on"
+	[Chromium]="desktop='^2'"
+	[mplayer2]="state=floating"
+	[Screenkey]="manage=off"
+	# [Alacritty]="state=floating"
+)
+
+for app in ${!bspc_rules[@]}; do
+	rule_defn=${bspc_rules[$app]}
+	bspc rule -a $app $rule_defn
+done
+
+

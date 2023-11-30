@@ -1,0 +1,5 @@
+#!/bin/env bash
+### Environment Variables ###
+
+PATH+=":~/personal/scripts:" # System Path
+

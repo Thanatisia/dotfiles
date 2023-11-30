@@ -1,0 +1,19 @@
+#!/bin/env bash
+<<EOF
+Source External files
+EOF
+
+declare -A sources=(
+	[polyfuncs]=~/.config/polybar/scripts
+)
+
+for src_name in "${!sources[@]}"; do
+	src_path="${sources[$src_name]}"
+	src="$src_path/$src_name"
+
+	if [[ -f "$src" ]]; then
+		# Found file
+		# echo -e "[+] Sourcing $src..."
+		source $src
+	fi
+done
