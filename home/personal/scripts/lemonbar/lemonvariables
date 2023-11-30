@@ -1,9 +1,0 @@
-#!/bin/bash
-
-: "
-Lemonbar Configuration Environment Variables
-"
-
-# Variables
-background="#2D2D2D00"
-foreground="#ff0000"
