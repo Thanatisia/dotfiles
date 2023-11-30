@@ -18,3 +18,8 @@
     - Migrated all files in branch 'main' to branch 'general'
     - Updated README to indicate the instructions on using the repository
 
+#### 2109H
+- Updates
+    - Updated README.md
+        - Created new branch subheader 'Planned Branches/Profiles'
+

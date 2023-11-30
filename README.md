@@ -9,14 +9,15 @@ Contains various config files (aka 'dotfiles') for ricing and general use.
 - [Resources](#resources)
 - [Remarks](#remarks)
 - [References](#references)
-- [Notes](#notes)
 
 ## Information
 
 ### Currently Available Branches
++ general : To contain any generic, non-application/distribution-specific rice or configuration
+
+### Planned Branches/Profiles
 + arch    : To contain dotfiles for my ArchLinux profiles
 + debian  : To contain dotfiles for my Debian profiles
-+ general : To contain any generic, non-application/distribution-specific rice or configuration
 + gentoo  : To contain dotfiles for my Gentoo profiles
 + nvim    : To contain dotfiles for my NeoVim profiles
 + termux  : To contain dotfiles for my Tmux profile
@@ -45,6 +46,10 @@ Contains various config files (aka 'dotfiles') for ricing and general use.
             - Select on the 'branch' drop-down list next to the word 'branches'
             - Select the branch of your choice
                 + The branch corresponds to the profile you wish to obtain the dotfiles of
+
+## Setup
+
+## Documentation
 
 ## Wiki
 
