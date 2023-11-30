@@ -1,0 +1,6 @@
+2022/03/23-03:08:30.648 3e1b Creating DB /home/pi/.config/chromium/Default/IndexedDB/https_vim.fandom.com_0.indexeddb.leveldb since it was missing.
+2022/03/23-03:08:30.768 3e1b Delete type=3 #1
+2022/03/24-02:44:48.089 527c Level-0 table #5: started
+2022/03/24-02:44:48.343 527c Level-0 table #5: 3094 bytes OK
+2022/03/24-02:44:48.945 527c Delete type=0 #3
+2022/03/24-02:44:48.947 527c Manual compaction at level-0 from (begin) .. (end); will stop at (end)

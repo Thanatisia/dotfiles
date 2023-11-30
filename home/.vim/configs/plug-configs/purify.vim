@@ -1,14 +1,11 @@
 "
-" Colorscheme - Purify
+" purify
 "
 
-"==========
-" Settings
-"==========
-" Modify Fonts
-    " Set Airline Compatibility
-        let g:airline_theme = "purify"
+"=================
+" Plugin Settings 
+"=================
 
-"========
-" Remaps
-"========
+"===================
+" Plugin Remappings 
+"===================

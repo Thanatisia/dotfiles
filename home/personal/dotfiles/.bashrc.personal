@@ -1,0 +1,35 @@
+##================#
+# BashRC Personal #
+#=================#
+
+: "
+Table of Contents:
+	- Variables
+		- Environment Variables
+	- Alias
+"
+
+# Variables
+	# Global Variables
+	BASHRC="$HOME/.bashrc"
+	BASHRC_PERSONAL="$HOME/.bashrc.personal"
+	VIMPATH="$HOME/.vim"
+	VIMRC="$VIMPATH/vimrc"
+
+	# Environment Variables
+
+# Alias
+# General
+	alias dir="dir --all"
+	alias ls="ls --color"
+# Package Management
+	alias pkginstall="sudo apt install"
+	alias pkgupdate="sudo apt update"
+	alias pkgupgrade="sudo apt upgrade"
+	alias pkgupdg="sudo apt update && sudo apt upgrade"
+# File Control
+	alias so="source"
+	alias so_bashrc="source $BASHRC"
+	alias so_vimrc="source $VIMRC"
+
+

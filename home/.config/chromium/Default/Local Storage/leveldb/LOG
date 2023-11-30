@@ -1,0 +1,51 @@
+2022/03/23-03:05:53.337 5 Recovering log #5
+2022/03/23-03:05:53.448 5 Delete type=3 #4
+2022/03/23-03:05:53.448 5 Delete type=0 #5
+2022/03/24-03:11:17.335 8d Level-0 table #9: started
+2022/03/24-03:11:17.511 8d Level-0 table #9: 23993 bytes OK
+2022/03/24-03:11:17.697 8d Delete type=0 #7
+2022/03/24-14:57:17.306 1f6 Level-0 table #11: started
+2022/03/24-14:57:17.324 1f6 Level-0 table #11: 8615 bytes OK
+2022/03/24-14:57:17.342 1f6 Delete type=0 #8
+2022/03/25-02:43:17.303 35d Level-0 table #13: started
+2022/03/25-02:43:17.317 35d Level-0 table #13: 8580 bytes OK
+2022/03/25-02:43:17.326 35d Delete type=0 #10
+2022/03/25-14:29:17.300 4c7 Level-0 table #15: started
+2022/03/25-14:29:17.316 4c7 Level-0 table #15: 8639 bytes OK
+2022/03/25-14:29:17.325 4c7 Delete type=0 #12
+2022/03/26-02:15:17.306 630 Level-0 table #17: started
+2022/03/26-02:15:17.331 630 Level-0 table #17: 8574 bytes OK
+2022/03/26-02:15:17.345 630 Delete type=0 #14
+2022/03/26-14:01:17.297 7a2 Level-0 table #19: started
+2022/03/26-14:01:17.315 7a2 Level-0 table #19: 8693 bytes OK
+2022/03/26-14:01:17.324 7a2 Delete type=0 #16
+2022/03/26-14:01:17.326 7a2 Compacting 4@0 + 1@1 files
+2022/03/26-14:01:17.345 7a2 Generated table #20@0: 2 keys, 235 bytes
+2022/03/26-14:01:17.346 7a2 Compacted 4@0 + 1@1 files => 235 bytes
+2022/03/26-14:01:17.352 7a2 compacted to: files[ 0 1 1 0 0 0 0 ]
+2022/03/26-14:01:17.356 7a2 Delete type=2 #11
+2022/03/26-14:01:17.356 7a2 Delete type=2 #17
+2022/03/26-14:01:17.357 7a2 Delete type=2 #13
+2022/03/26-14:01:17.357 7a2 Delete type=2 #15
+2022/03/26-14:01:17.357 7a2 Delete type=2 #19
+2022/03/27-02:47:17.298 912 Level-0 table #22: started
+2022/03/27-02:47:17.313 912 Level-0 table #22: 8539 bytes OK
+2022/03/27-02:47:17.322 912 Delete type=0 #18
+2022/03/27-14:33:17.306 a60 Level-0 table #24: started
+2022/03/27-14:33:17.320 a60 Level-0 table #24: 8646 bytes OK
+2022/03/27-14:33:17.331 a60 Delete type=0 #21
+2022/03/28-02:19:17.304 bf2 Level-0 table #26: started
+2022/03/28-02:19:17.321 bf2 Level-0 table #26: 8558 bytes OK
+2022/03/28-02:19:17.330 bf2 Delete type=0 #23
+2022/03/28-14:05:17.298 d5c Level-0 table #28: started
+2022/03/28-14:05:17.314 d5c Level-0 table #28: 8646 bytes OK
+2022/03/28-14:05:17.324 d5c Delete type=0 #25
+2022/03/28-14:05:17.327 d5c Compacting 4@0 + 1@1 files
+2022/03/28-14:05:17.348 d5c Generated table #29@0: 2 keys, 235 bytes
+2022/03/28-14:05:17.349 d5c Compacted 4@0 + 1@1 files => 235 bytes
+2022/03/28-14:05:17.355 d5c compacted to: files[ 0 1 1 0 0 0 0 ]
+2022/03/28-14:05:17.358 d5c Delete type=2 #26
+2022/03/28-14:05:17.359 d5c Delete type=2 #20
+2022/03/28-14:05:17.359 d5c Delete type=2 #24
+2022/03/28-14:05:17.359 d5c Delete type=2 #28
+2022/03/28-14:05:17.360 d5c Delete type=2 #22

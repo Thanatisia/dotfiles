@@ -1,0 +1,6 @@
+2022/03/23-03:08:02.776 3dfc Creating DB /home/pi/.config/chromium/Default/IndexedDB/https_www.next.sg_0.indexeddb.leveldb since it was missing.
+2022/03/23-03:08:02.874 3dfc Delete type=3 #1
+2022/03/23-09:03:18.365 47a8 Level-0 table #5: started
+2022/03/23-09:03:18.598 47a8 Level-0 table #5: 828 bytes OK
+2022/03/23-09:03:18.702 47a8 Delete type=0 #3
+2022/03/23-09:03:18.725 47a8 Manual compaction at level-0 from (begin) .. (end); will stop at (end)
