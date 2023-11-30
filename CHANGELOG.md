@@ -23,3 +23,9 @@
     - Updated README.md
         - Created new branch subheader 'Planned Branches/Profiles'
 
+#### 2227H
+- Updates
+    - Updated README.md
+        - Added instructions to the quickstart guide to clone the repository and through a branch
+
+

@@ -27,6 +27,12 @@ Contains various config files (aka 'dotfiles') for ricing and general use.
 - The repository is separated into an 'branch isolation' environment system, where each branch (excluding 'generic/general'), will contain profiles for a specific platform, software and/or distribution.
     - Please refer to [Currently available branches](#currently-available-branches) for a full list of branches (which will contain dotfiles for a platform, software and/or distribution)
 
+- Clone the repository 
+    - Specific branch/profile
+        ```console
+        git clone https://github.com/Thanatisia/dotfiles --branch=[branch-name]
+        ```
+
 - Movements
     - git CLI utility
         - To fetch and obtain all branches
